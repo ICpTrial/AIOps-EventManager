@@ -55,3 +55,15 @@
     ![image](https://user-images.githubusercontent.com/22209835/141885342-5c6ed64a-8da4-4bab-a40f-362b3bb19e3d.png)
     
 1. OpenShift Container Storage の導入
+![image](https://user-images.githubusercontent.com/22209835/141885574-3cee8e6b-19ae-4710-aee8-56838707a095.png)
+![image](https://user-images.githubusercontent.com/22209835/141885641-85da113b-7e8d-457f-8f99-ff04ea7af92b.png)
+![image](https://user-images.githubusercontent.com/22209835/141885720-d337bf45-a8b2-45cb-9369-d282a72acecd.png)
+
+![image](https://user-images.githubusercontent.com/22209835/141886104-83ba1997-38b2-40d1-899f-8664fde5fd3e.png)
+![image](https://user-images.githubusercontent.com/22209835/141886497-89696537-a5d9-4dc6-8b55-0bc619089b81.png)
+![image](https://user-images.githubusercontent.com/22209835/141886581-0b1a52d3-0b9b-45d3-88d1-3be72f866a7c.png)
+![image](https://user-images.githubusercontent.com/22209835/141886643-5896c1b6-d530-408a-a63c-9d8f81a5e16c.png)
+
+
+
+
