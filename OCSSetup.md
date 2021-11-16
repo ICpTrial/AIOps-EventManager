@@ -47,3 +47,11 @@
 
         Removing debug pod ...
         ```
+1. BlockStorage用 LocalVolume の作成
+![image](https://user-images.githubusercontent.com/22209835/141884695-b89a1014-405a-4053-a1a5-482cb532b12c.png)
+![image](https://user-images.githubusercontent.com/22209835/141885093-a0c8786a-a1c6-4df8-987b-745d76b1f77a.png)
+![image](https://user-images.githubusercontent.com/22209835/141885145-735e670f-1e8f-409d-929a-0b49733e42f6.png)
+    1. StorageClass が作成されていることを確認します
+    ![image](https://user-images.githubusercontent.com/22209835/141885342-5c6ed64a-8da4-4bab-a40f-362b3bb19e3d.png)
+    
+1. OpenShift Container Storage の導入
