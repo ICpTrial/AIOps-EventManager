@@ -62,6 +62,8 @@
 ![image](https://user-images.githubusercontent.com/22209835/141886581-0b1a52d3-0b9b-45d3-88d1-3be72f866a7c.png)
 ![image](https://user-images.githubusercontent.com/22209835/141886643-5896c1b6-d530-408a-a63c-9d8f81a5e16c.png)
 
+Storage Cluster が Ready となったことを確認する。
+![image](https://user-images.githubusercontent.com/22209835/141926702-e7887cb4-030f-4a63-a2cf-98bb3641a721.png)
 
 
 
