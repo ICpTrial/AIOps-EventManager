@@ -115,3 +115,8 @@ subscription.operators.coreos.com/ibm-noi-catalog-subscription created
 [✓] CASE launch script completed successfully
 OK
 ```
+![image](https://user-images.githubusercontent.com/22209835/141952791-ee1b2a12-79ac-4a32-85a8-13f73312235b.png)
+
+1. EventManager (NOI)の構成
+![image](https://user-images.githubusercontent.com/22209835/141953254-82339c0c-8798-4d45-8896-12b18670aaa3.png)
+
