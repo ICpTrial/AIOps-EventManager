@@ -1,6 +1,6 @@
 1. OpenShift 環境へのログイン
 1. 名前空間　cp4aiops の作成
-``oc create project cp4aiops``
+``oc new-project cp4aiops``
 1. Entitilement Key の取得
 https://myibm.ibm.com/products-services/containerlibrary にアクセスし取得
 ```
