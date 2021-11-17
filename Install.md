@@ -120,3 +120,9 @@ OK
 1. EventManager (NOI)の構成
 ![image](https://user-images.githubusercontent.com/22209835/141953254-82339c0c-8798-4d45-8896-12b18670aaa3.png)
 
+1. ![image](https://user-images.githubusercontent.com/22209835/142089673-890f1b8b-06a9-419a-9266-a510417c53a1.png)
+
+1. `cp4aiops` の名前空間にて、 Pending や CrashBackoff 状態のPodが存在しないことを確認
+![image](https://user-images.githubusercontent.com/22209835/142089756-d6c573ae-8833-41fc-a035-f26ee3fbf552.png)
+
+
