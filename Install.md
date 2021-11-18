@@ -125,4 +125,10 @@ OK
 1. `cp4aiops` の名前空間にて、 Pending や CrashBackoff 状態のPodが存在しないことを確認
 ![image](https://user-images.githubusercontent.com/22209835/142089756-d6c573ae-8833-41fc-a035-f26ee3fbf552.png)
 
+1. 以下のコマンドで Event Manager への ルートを確認します。
+```
+$ oc get routes -n cp4aiops | grep evtmanager-ibm-hdm-common-ui
+```
+EventManager GUIが開きます。
+![image](https://user-images.githubusercontent.com/22209835/142336759-9c300d2a-e9f9-4454-b44b-0b147cc4afa6.png)
 
