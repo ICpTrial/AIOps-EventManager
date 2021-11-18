@@ -1,6 +1,5 @@
 
 1. Local Storage Operatorの導入
-    1.  
     ![image](https://user-images.githubusercontent.com/22209835/141883405-66dddd1e-5184-4258-8c62-296316f5a187.png)
     ![image](https://user-images.githubusercontent.com/22209835/141883508-631c36e2-aac8-4f41-ab8b-fe926ca36587.png)
     1. デフォルトの設定のまま導入
@@ -51,8 +50,33 @@
 ![image](https://user-images.githubusercontent.com/22209835/141885145-735e670f-1e8f-409d-929a-0b49733e42f6.png)
     1. StorageClass が作成されていることを確認します
     ![image](https://user-images.githubusercontent.com/22209835/141885342-5c6ed64a-8da4-4bab-a40f-362b3bb19e3d.png)
-    
-1. OpenShift Container Storage の導入
+1. [トライアル環境のみ]Local Storageの構成
+```
+./createStorageAllNodes.sh
+This script will create local Storage Classes, Persistant Volumes and directories required by Netcool Operations Insight
+Enter y to continue: y
+
+storageclass.storage.k8s.io/ls-cassandra created
+storageclass.storage.k8s.io/ls-cassandra-bak created
+storageclass.storage.k8s.io/ls-kafka created
+storageclass.storage.k8s.io/ls-zookeeper created
+storageclass.storage.k8s.io/ls-couchdb created
+storageclass.storage.k8s.io/ls-db2 created
+storageclass.storage.k8s.io/ls-impactgui created
+storageclass.storage.k8s.io/ls-ncobackup created
+storageclass.storage.k8s.io/ls-ncoprimary created
+storageclass.storage.k8s.io/ls-openldap created
+storageclass.storage.k8s.io/ls-scala created
+storageclass.storage.k8s.io/ls-nciserver created
+storageclass.storage.k8s.io/ls-elastic created
+storageclass.storage.k8s.io/ls-observer created
+storageclass.storage.k8s.io/ls-topology-cassandra created
+storageclass.storage.k8s.io/ls-topology-cassandra-bak created
+storageclass.storage.k8s.io/ls-topology-elastic created
+persistentvolume/noi-ls-cassandra-worker0.itzocp-3100008gyq-uqq62uc2.cp.fyre.ibm.com created 
+...
+```
+3. [本番環境] OpenShift Container Storage の導入
 ![image](https://user-images.githubusercontent.com/22209835/141885574-3cee8e6b-19ae-4710-aee8-56838707a095.png)
 ![image](https://user-images.githubusercontent.com/22209835/141885641-85da113b-7e8d-457f-8f99-ff04ea7af92b.png)
 ![image](https://user-images.githubusercontent.com/22209835/141885720-d337bf45-a8b2-45cb-9369-d282a72acecd.png)
