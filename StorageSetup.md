@@ -1,11 +1,18 @@
+Cloud Pak for AIOps (CP4AIOps) のライセンスには、CP4AIOps の稼働のために利用することができる OpenShift Container Storage (OCS) の entitlementが付帯します。
+また、トライアル環境においては、Local Storage を利用しての環境も構成することが可能です。
 
-1. Local Storage Operatorの導入
-    ![image](https://user-images.githubusercontent.com/22209835/141883405-66dddd1e-5184-4258-8c62-296316f5a187.png)
-    ![image](https://user-images.githubusercontent.com/22209835/141883508-631c36e2-aac8-4f41-ab8b-fe926ca36587.png)
-    1. デフォルトの設定のまま導入
-    ![image](https://user-images.githubusercontent.com/22209835/141924552-2b748426-1db5-4549-978a-b41bc50bc4e0.png)
-    1. 正常導入を確認します
-    ![image](https://user-images.githubusercontent.com/22209835/141883734-d02c0f6f-12d3-43b9-9f88-353fdfe80bce.png)
+1. Local Storage の構成
+検証のためにトライアル環境を構成する場合には、Local Storageを利用して構成することが可能です。  
+本番環境では Local Storage はサポートされないため、　別途OCSの構成または 別のストレージ利用を検討ください。
+
+    1. Local Storage Operatorの導入
+        1. OpenShiftの環境にログインし、Red Hatが提供する Local Storage Operatorを選択します。
+        ![image](https://user-images.githubusercontent.com/22209835/141883405-66dddd1e-5184-4258-8c62-296316f5a187.png)
+        ![image](https://user-images.githubusercontent.com/22209835/141883508-631c36e2-aac8-4f41-ab8b-fe926ca36587.png)
+        1. デフォルトの設定のまま導入
+        ![image](https://user-images.githubusercontent.com/22209835/141924552-2b748426-1db5-4549-978a-b41bc50bc4e0.png)
+        1. 正常導入を確認します
+        ![image](https://user-images.githubusercontent.com/22209835/141883734-d02c0f6f-12d3-43b9-9f88-353fdfe80bce.png)
 1. 利用可能な ノードのディスクを確認します。
     
         ```
