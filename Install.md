@@ -132,3 +132,7 @@ $ oc get routes -n cp4aiops | grep evtmanager-ibm-hdm-common-ui
 EventManager GUIが開きます。
 ![image](https://user-images.githubusercontent.com/22209835/142336759-9c300d2a-e9f9-4454-b44b-0b147cc4afa6.png)
 
+1. ログインユーザーは icpadmin です。 以下のコマンドで、自動生成された icpadmin の パスワードを取得します。
+```
+oc get secret evtmanager-icpadmin-secret -o json -n cp4aiops | grep ICP_ADMIN_PASSWORD  | cut -d : -f2 | cut -d '"' -f2 | base64 -d;echo
+```
