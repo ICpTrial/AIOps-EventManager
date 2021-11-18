@@ -150,15 +150,15 @@ Caseツールを使って、EventManagerのOperatorを導入します。
 
 ### 4. CP4AIOps EventManager (NOI) へのアクセス
 1. 以下のコマンドで Event Manager への ルートを確認し、ブラウザで開きます。
-```
-$ oc get routes -n cp4aiops | grep evtmanager-ibm-hdm-common-ui
-```
+  ```
+  $ oc get routes -n cp4aiops | grep evtmanager-ibm-hdm-common-ui
+  ```
 1. EventManager(NOI)のGUIが開きます。
 ![image](https://user-images.githubusercontent.com/22209835/142336759-9c300d2a-e9f9-4454-b44b-0b147cc4afa6.png)
 
 1. デフォルトのログイン・ユーザーは icpadmin です。 以下のコマンドで、自動生成された icpadmin の パスワードを取得します。
-```
-oc get secret evtmanager-icpadmin-secret -o json -n cp4aiops | grep ICP_ADMIN_PASSWORD  | cut -d : -f2 | cut -d '"' -f2 | base64 -d;echo
-```
+  ```
+  oc get secret evtmanager-icpadmin-secret -o json -n cp4aiops | grep ICP_ADMIN_PASSWORD  | cut -d : -f2 | cut -d '"' -f2 | base64 -d;echo
+  ```
 1. Netcool Operational Insight の画面を確認します。
 ![image](https://user-images.githubusercontent.com/22209835/142355493-f1ec1f99-47d6-4622-aab1-c350533adf0f.png)
