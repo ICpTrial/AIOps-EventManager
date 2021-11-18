@@ -16,18 +16,18 @@ oc create secret docker-registry noi-registry-secret --docker-username=cp --dock
 ```
 if [ $(oc get ingresscontroller default -n openshift-ingress-operator -o jsonpath='{.status.endpointPublishingStrategy.type}') = "HostNetwork" ]; then oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'; fi
 ```
-### 1. CP4AIOps カタログ・ソースの作成
+### 1. CP4AIOps EventManager カタログ・ソースの作成
 1. IBM Cloud Pakの管理用CLI `cloudctl` コマンド のダウンロード
 [こちら](https://github.com/IBM/cloud-pak-cli/releases)から cloudctl をダウンロードし、パスを通し、実行権限を付与します。
-1. 以下の
-
+1. Caseツールのダウンロード
+cloudctlコマンドを利用して、EventManager(NOI)用のCaseをダウンロードします。
+```
+LANG=C
 cloudctl case save --case ibm-netcool-prod --outputdir /tmp/cases --repo https://raw.githubusercontent.com/IBM/cloud-pak/master/repo/case
-
-1. カタログ・ソースの作成
+```
+1. Caseツールを使って、EventManagerのカタログソースを作成します。
 ```
 /tmp/cases $ export LANG=C
-/tmp/cases $ cloudctl version
-Client Version: v3.7.1+2066.48bc12004306cf3d8b0ca5ef5f914cad5a7c6247
 /tmp/cases $ cloudctl case launch --case ibm-netcool-prod --namespace cp4aiops  --inventory noiOperatorSetup --action install-catalog
 Welcome to the CASE launcher
 Attempting to retrieve and extract the CASE from the specified location
@@ -59,9 +59,18 @@ done
 [✓] CASE launch script completed successfully
 OK
 ```
+
+### 2. CP4AIOps EventManager Operatorの導入
 1. Event Manager Operatorの構成
 
 ```
+cloudctl case launch --case ibm-netcool-prod --namespace cp4aiops --inventory noiOperatorSetup--action install-operator --args "--secret noi-registry-secret"
+Welcome to the CASE launcher
+Attempting to retrieve and extract the CASE from the specified location
+[✓] CASE has been retrieved and extracted
+Attempting to validate the CASE
+[✓] CASE has been successfully validated
+Attempting to locate the launch inventory item, script, and action in the specified CASE
 [✓] Found the specified launch inventory item, action, and script for the CASE
 Attempting to check the cluster and machine for required prerequisites for launching the item
 Checking for required prereqs...
@@ -120,6 +129,8 @@ subscription.operators.coreos.com/ibm-noi-catalog-subscription created
 [✓] CASE launch script completed successfully
 OK
 ```
+
+
 ![image](https://user-images.githubusercontent.com/22209835/141952791-ee1b2a12-79ac-4a32-85a8-13f73312235b.png)
 
 1. EventManager (NOI)の構成
