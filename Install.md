@@ -130,28 +130,35 @@ Caseツールを使って、EventManagerのOperatorを導入します。
   [✓] CASE launch script completed successfully
   OK
   ```
-  
+### 3. CP4AIOps EventManager (NOI) の導入
+1. Openshift にログインし、cp4aiops 名前空間に EventManager Operatorが導入されていることを確認します。
 ![image](https://user-images.githubusercontent.com/22209835/141952791-ee1b2a12-79ac-4a32-85a8-13f73312235b.png)
-
-1. EventManager (NOI)の構成
+1. すべてを OpenShift上で稼働させる場合には、NOIのオペランドを構成します。適宜パラメータを指定し、作成をクリックします。
+  * Entitlment Secretは先に作成したもの(noi-registry-secret)を指定します
+  * License をアクセプトします
+  * ClusterDomainを指定します。  
+通常 OpenShiftコンソールの URL console-openshift-console.apps.somedomain.ibm.com から console-openshift-console.を覗いたものです。
+  * Deployment Typeは Trial または Production を選択ください。
+  * Persistence Enable する際には、適宜 Storage Classを指定します。
 ![image](https://user-images.githubusercontent.com/22209835/141953254-82339c0c-8798-4d45-8896-12b18670aaa3.png)
 
-1. ![image](https://user-images.githubusercontent.com/22209835/142089673-890f1b8b-06a9-419a-9266-a510417c53a1.png)
+1. NOI Operandが正常に構成されるのを待機します。10~20分ほどかかります。
+![image](https://user-images.githubusercontent.com/22209835/142089673-890f1b8b-06a9-419a-9266-a510417c53a1.png)
 
-1. `cp4aiops` の名前空間にて、 Pending や CrashBackoff 状態のPodが存在しないことを確認
+1. `cp4aiops` の名前空間にて、 Pending や CrashBackoff 状態のPodが存在しないことを確認します。有効化したコンポーネントなどにも依存しますが、80近い数のコンテナが稼働します。
 ![image](https://user-images.githubusercontent.com/22209835/142089756-d6c573ae-8833-41fc-a035-f26ee3fbf552.png)
 
-1. 以下のコマンドで Event Manager への ルートを確認します。
+### 4. CP4AIOps EventManager (NOI) へのアクセス
+1. 以下のコマンドで Event Manager への ルートを確認し、ブラウザで開きます。
 ```
 $ oc get routes -n cp4aiops | grep evtmanager-ibm-hdm-common-ui
 ```
-EventManager GUIが開きます。
+1. EventManager(NOI)のGUIが開きます。
 ![image](https://user-images.githubusercontent.com/22209835/142336759-9c300d2a-e9f9-4454-b44b-0b147cc4afa6.png)
 
-1. ログインユーザーは icpadmin です。 以下のコマンドで、自動生成された icpadmin の パスワードを取得します。
+1. デフォルトのログイン・ユーザーは icpadmin です。 以下のコマンドで、自動生成された icpadmin の パスワードを取得します。
 ```
 oc get secret evtmanager-icpadmin-secret -o json -n cp4aiops | grep ICP_ADMIN_PASSWORD  | cut -d : -f2 | cut -d '"' -f2 | base64 -d;echo
 ```
 1. Netcool Operational Insight の画面を確認します。
 ![image](https://user-images.githubusercontent.com/22209835/142355493-f1ec1f99-47d6-4622-aab1-c350533adf0f.png)
-
