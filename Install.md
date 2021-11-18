@@ -17,7 +17,10 @@ oc create secret docker-registry noi-registry-secret --docker-username=cp --dock
 if [ $(oc get ingresscontroller default -n openshift-ingress-operator -o jsonpath='{.status.endpointPublishingStrategy.type}') = "HostNetwork" ]; then oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'; fi
 ```
 ### 1. CP4AIOps カタログ・ソースの作成
-1. CaseToolのダウンロード
+1. IBM Cloud Pakの管理用CLI `cloudctl` コマンド のダウンロード
+[こちら](https://github.com/IBM/cloud-pak-cli/releases)から cloudctl をダウンロードし、パスを通し、実行権限を付与します。
+1. 以下の
+
 cloudctl case save --case ibm-netcool-prod --outputdir /tmp/cases --repo https://raw.githubusercontent.com/IBM/cloud-pak/master/repo/case
 
 1. カタログ・ソースの作成
