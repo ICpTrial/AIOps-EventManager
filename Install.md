@@ -136,3 +136,6 @@ EventManager GUIが開きます。
 ```
 oc get secret evtmanager-icpadmin-secret -o json -n cp4aiops | grep ICP_ADMIN_PASSWORD  | cut -d : -f2 | cut -d '"' -f2 | base64 -d;echo
 ```
+1. Netcool Operational Insight の画面を確認します。
+![image](https://user-images.githubusercontent.com/22209835/142355493-f1ec1f99-47d6-4622-aab1-c350533adf0f.png)
+
