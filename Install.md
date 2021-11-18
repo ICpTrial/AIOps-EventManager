@@ -25,112 +25,112 @@ cloudctlコマンドを利用して、EventManager(NOI)用のCaseをダウンロ
 LANG=C
 cloudctl case save --case ibm-netcool-prod --outputdir /tmp/cases --repo https://raw.githubusercontent.com/IBM/cloud-pak/master/repo/case
 ```
-1. Caseツールを使って、EventManagerのカタログソースを作成します。
-```
-/tmp/cases $ export LANG=C
-/tmp/cases $ cloudctl case launch --case ibm-netcool-prod --namespace cp4aiops  --inventory noiOperatorSetup --action install-catalog
-Welcome to the CASE launcher
-Attempting to retrieve and extract the CASE from the specified location
-[✓] CASE has been retrieved and extracted
-Attempting to validate the CASE
-[✓] CASE has been successfully validated
-Attempting to locate the launch inventory item, script, and action in the specified CASE
-[✓] Found the specified launch inventory item, action, and script for the CASE
-Attempting to check the cluster and machine for required prerequisites for launching the item
-Checking for required prereqs...
+1. EventManagerカタログソースの作成
+Caseツールを使って、EventManagerのカタログソースを作成します。
+  ```
+  /tmp/cases $ export LANG=C
+  /tmp/cases $ cloudctl case launch --case ibm-netcool-prod --namespace cp4aiops  --inventory noiOperatorSetup --action install-catalog
+  Welcome to the CASE launcher
+  Attempting to retrieve and extract the CASE from the specified location
+  [✓] CASE has been retrieved and extracted
+  Attempting to validate the CASE
+  [✓] CASE has been successfully validated
+  Attempting to locate the launch inventory item, script, and action in the specified CASE
+  [✓] Found the specified launch inventory item, action, and script for the CASE
+  Attempting to check the cluster and machine for required prerequisites for launching the item
+  Checking for required prereqs...
 
-Prerequisite                                                                      Result
-Cluster Kubernetes version must be >=1.14.6                                       true
-Kubernetes node resource must match a set of expressions defined in prereqs.yaml  true
-openshift Kubernetes version must be >=1.14.6                                     true
-Client has oc version 4.4.0 or greater                                            true
-Client has cloudctl version v3.4.0 or greater                                     true
+  Prerequisite                                                                      Result
+  Cluster Kubernetes version must be >=1.14.6                                       true
+  Kubernetes node resource must match a set of expressions defined in prereqs.yaml  true
+  openshift Kubernetes version must be >=1.14.6                                     true
+  Client has oc version 4.4.0 or greater                                            true
+  Client has cloudctl version v3.4.0 or greater                                     true
 
-Required prereqs result: OK
-Checking user permissions...
-No user rules specified.
-[✓] Cluster and Client Prerequisites have been met for the CASE
-Running the CASE noiOperatorSetup launch script with the following action context: installCatalog
-Executing inventory item noiOperatorSetup, action installCatalog : launch.sh
-Checking arguments for install catalog action
--------------Installing catalog source-------------
-catalogsource.operators.coreos.com/ibm-noi-catalog created
-done
-[✓] CASE launch script completed successfully
-OK
-```
+  Required prereqs result: OK
+  Checking user permissions...
+  No user rules specified.
+  [✓] Cluster and Client Prerequisites have been met for the CASE
+  Running the CASE noiOperatorSetup launch script with the following action context: installCatalog
+  Executing inventory item noiOperatorSetup, action installCatalog : launch.sh
+  Checking arguments for install catalog action
+  -------------Installing catalog source-------------
+  catalogsource.operators.coreos.com/ibm-noi-catalog created
+  done
+  [✓] CASE launch script completed successfully
+  OK
+  ```
 
 ### 2. CP4AIOps EventManager Operatorの導入
-1. Event Manager Operatorの構成
+1. Event Manager Operatorの導入
+Caseツールを使って、EventManagerのOperatorを導入します。
+  ```
+  cloudctl case launch --case ibm-netcool-prod --namespace cp4aiops --inventory noiOperatorSetup--action install-operator --args "--secret noi-registry-secret"
+  Welcome to the CASE launcher
+  Attempting to retrieve and extract the CASE from the specified location
+  [✓] CASE has been retrieved and extracted
+  Attempting to validate the CASE
+  [✓] CASE has been successfully validated
+  Attempting to locate the launch inventory item, script, and action in the specified CASE
+  [✓] Found the specified launch inventory item, action, and script for the CASE
+  Attempting to check the cluster and machine for required prerequisites for launching the item
+  Checking for required prereqs...
 
-```
-cloudctl case launch --case ibm-netcool-prod --namespace cp4aiops --inventory noiOperatorSetup--action install-operator --args "--secret noi-registry-secret"
-Welcome to the CASE launcher
-Attempting to retrieve and extract the CASE from the specified location
-[✓] CASE has been retrieved and extracted
-Attempting to validate the CASE
-[✓] CASE has been successfully validated
-Attempting to locate the launch inventory item, script, and action in the specified CASE
-[✓] Found the specified launch inventory item, action, and script for the CASE
-Attempting to check the cluster and machine for required prerequisites for launching the item
-Checking for required prereqs...
+  Prerequisite                                                                      Result
+  Cluster Kubernetes version must be >=1.14.6                                       true
+  Kubernetes node resource must match a set of expressions defined in prereqs.yaml  true
+   Kubernetes version must be                                                       false
+  openshift Kubernetes version must be >=1.14.6                                     true
 
-Prerequisite                                                                      Result
-Cluster Kubernetes version must be >=1.14.6                                       true
-Kubernetes node resource must match a set of expressions defined in prereqs.yaml  true
- Kubernetes version must be                                                       false
-openshift Kubernetes version must be >=1.14.6                                     true
+  Required prereqs result: OK
+  Checking user permissions...
 
-Required prereqs result: OK
-Checking user permissions...
+  Kubernetes RBAC Prerequisite                            Verbs                               Result  Reason
+  rbac.authorization.k8s.io.clusterroles/*                get,list,watch,create,patch,update  true
+  apiextensions.k8s.io.customresourcedefinitions/v1beta1  get,list,watch,create,patch,update  true
+  security.openshift.io.securitycontextconstraints/       get,list,watch,create,patch,update  true
 
-Kubernetes RBAC Prerequisite                            Verbs                               Result  Reason
-rbac.authorization.k8s.io.clusterroles/*                get,list,watch,create,patch,update  true
-apiextensions.k8s.io.customresourcedefinitions/v1beta1  get,list,watch,create,patch,update  true
-security.openshift.io.securitycontextconstraints/       get,list,watch,create,patch,update  true
-
-User permissions result: OK
-[✓] Cluster and Client Prerequisites have been met for the CASE
-Running the CASE noiOperatorSetup launch script with the following action context: installOperator
-Executing inventory item noiOperatorSetup, action installOperator : launch.sh
-Checking install arguments for install
-check for any existing operator group in cp4aiops ...
-no existing operator group found
-------------- Installing operator group for cp4aiops -------------
-apiVersion: operators.coreos.com/v1alpha2
-kind: OperatorGroup
-metadata:
-  name: ibm-noi-catalog-group
-  namespace: cp4aiops
-spec:
-  targetNamespaces:
-  - cp4aiops
-operatorgroup.operators.coreos.com/ibm-noi-catalog-group created
-done
--------------Installing via OLM-------------
-serviceaccount/noi-service-account created
-serviceaccount/noi-service-account patched
-checking if catalog source exists ...
-Error from server (NotFound): catalogsources.operators.coreos.com "ibm-noi-catalog" not found
-NAME              DISPLAY           TYPE   PUBLISHER   AGE
-ibm-noi-catalog   ibm-noi-catalog   grpc   IBM         6m49s
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: ibm-noi-catalog-subscription
-  namespace: cp4aiops
-spec:
-  channel: v1.5
-  name: noi
-  installPlanApproval: Automatic
-  source: ibm-noi-catalog
-  sourceNamespace: cp4aiops
-subscription.operators.coreos.com/ibm-noi-catalog-subscription created
-[✓] CASE launch script completed successfully
-OK
-```
-
-
+  User permissions result: OK
+  [✓] Cluster and Client Prerequisites have been met for the CASE
+  Running the CASE noiOperatorSetup launch script with the following action context: installOperator
+  Executing inventory item noiOperatorSetup, action installOperator : launch.sh
+  Checking install arguments for install
+  check for any existing operator group in cp4aiops ...
+  no existing operator group found
+  ------------- Installing operator group for cp4aiops -------------
+  apiVersion: operators.coreos.com/v1alpha2
+  kind: OperatorGroup
+  metadata:
+    name: ibm-noi-catalog-group
+    namespace: cp4aiops
+  spec:
+    targetNamespaces:
+    - cp4aiops
+  operatorgroup.operators.coreos.com/ibm-noi-catalog-group created
+  done
+  -------------Installing via OLM-------------
+  serviceaccount/noi-service-account created
+  serviceaccount/noi-service-account patched
+  checking if catalog source exists ...
+  Error from server (NotFound): catalogsources.operators.coreos.com "ibm-noi-catalog" not found
+  NAME              DISPLAY           TYPE   PUBLISHER   AGE
+  ibm-noi-catalog   ibm-noi-catalog   grpc   IBM         6m49s
+  apiVersion: operators.coreos.com/v1alpha1
+  kind: Subscription
+  metadata:
+    name: ibm-noi-catalog-subscription
+    namespace: cp4aiops
+  spec:
+    channel: v1.5
+    name: noi
+    installPlanApproval: Automatic
+    source: ibm-noi-catalog
+    sourceNamespace: cp4aiops
+  subscription.operators.coreos.com/ibm-noi-catalog-subscription created
+  [✓] CASE launch script completed successfully
+  OK
+  ```
+  
 ![image](https://user-images.githubusercontent.com/22209835/141952791-ee1b2a12-79ac-4a32-85a8-13f73312235b.png)
 
 1. EventManager (NOI)の構成
