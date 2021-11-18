@@ -73,67 +73,72 @@ Cloud Pak for AIOps (CP4AIOps) のライセンスには、CP4AIOps の稼働の�
 1. ターミナルから OpenShift環境に入り、`createStorageAllNode.sh`を実行します。
 ホスト名が長く、Kubernetesリソース命名規則の64文字を超えてしまう場合などは、スクリプト内のリソース名を適宜変更して実行ください。 
 この環境では、local-storage を ls に置き換えて実行しています。
-```
-./createStorageAllNodes.sh
-This script will create local Storage Classes, Persistant Volumes and directories required by Netcool Operations Insight
-Enter y to continue: y
+    ```
+    ./createStorageAllNodes.sh
+    This script will create local Storage Classes, Persistant Volumes and directories required by Netcool Operations Insight
+    Enter y to continue: y
 
-storageclass.storage.k8s.io/ls-cassandra created
-storageclass.storage.k8s.io/ls-cassandra-bak created
-storageclass.storage.k8s.io/ls-kafka created
-storageclass.storage.k8s.io/ls-zookeeper created
-storageclass.storage.k8s.io/ls-couchdb created
-storageclass.storage.k8s.io/ls-db2 created
-storageclass.storage.k8s.io/ls-impactgui created
-storageclass.storage.k8s.io/ls-ncobackup created
-storageclass.storage.k8s.io/ls-ncoprimary created
-storageclass.storage.k8s.io/ls-openldap created
-storageclass.storage.k8s.io/ls-scala created
-storageclass.storage.k8s.io/ls-nciserver created
-storageclass.storage.k8s.io/ls-elastic created
-storageclass.storage.k8s.io/ls-observer created
-storageclass.storage.k8s.io/ls-topology-cassandra created
-storageclass.storage.k8s.io/ls-topology-cassandra-bak created
-storageclass.storage.k8s.io/ls-topology-elastic created
-persistentvolume/noi-ls-cassandra-worker0.itzocp-3100008gyq-uqq62uc2.cp.fyre.ibm.com created 
-（後略）
-```
+    storageclass.storage.k8s.io/ls-cassandra created
+    storageclass.storage.k8s.io/ls-cassandra-bak created
+    storageclass.storage.k8s.io/ls-kafka created
+    storageclass.storage.k8s.io/ls-zookeeper created
+    storageclass.storage.k8s.io/ls-couchdb created
+    storageclass.storage.k8s.io/ls-db2 created
+    storageclass.storage.k8s.io/ls-impactgui created
+    storageclass.storage.k8s.io/ls-ncobackup created
+    storageclass.storage.k8s.io/ls-ncoprimary created
+    storageclass.storage.k8s.io/ls-openldap created
+    storageclass.storage.k8s.io/ls-scala created
+    storageclass.storage.k8s.io/ls-nciserver created
+    storageclass.storage.k8s.io/ls-elastic created
+    storageclass.storage.k8s.io/ls-observer created
+    storageclass.storage.k8s.io/ls-topology-cassandra created
+    storageclass.storage.k8s.io/ls-topology-cassandra-bak created
+    storageclass.storage.k8s.io/ls-topology-elastic created
+    persistentvolume/noi-ls-cassandra-worker0.itzocp-3100008gyq-uqq62uc2.cp.fyre.ibm.com created 
+    （後略）
+    ```
 1. 作成されたストレージクラスを確認します。
-```
- $ oc get sc
-NAME                        PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-ls-cassandra                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-cassandra-bak            kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-couchdb                  kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-db2                      kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-elastic                  kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
-ls-impactgui                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-kafka                    kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-nciserver                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
-ls-ncobackup                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-ncoprimary               kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-observer                 kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
-ls-openldap                 kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-scala                    kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-ls-topology-cassandra       kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
-ls-topology-cassandra-bak   kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
-ls-topology-elastic         kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
-ls-zookeeper                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
-```
+    ```
+     $ oc get sc
+    NAME                        PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+    ls-cassandra                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-cassandra-bak            kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-couchdb                  kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-db2                      kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-elastic                  kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
+    ls-impactgui                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-kafka                    kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-nciserver                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
+    ls-ncobackup                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-ncoprimary               kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-observer                 kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
+    ls-openldap                 kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-scala                    kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ls-topology-cassandra       kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
+    ls-topology-cassandra-bak   kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
+    ls-topology-elastic         kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  69m
+    ls-zookeeper                kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   false                  70m
+    ```
 
+## 2. OpenShift Container Storage の導入
 
-3. [本番環境] OpenShift Container Storage の導入
+### 1. Openshift Container Storage Operatorの導入
+1. OperatorHub より OpenShift Container Storage Operatorを選択します。
 ![image](https://user-images.githubusercontent.com/22209835/141885574-3cee8e6b-19ae-4710-aee8-56838707a095.png)
+1. インストールをクリックします。
 ![image](https://user-images.githubusercontent.com/22209835/141885641-85da113b-7e8d-457f-8f99-ff04ea7af92b.png)
+1. デフォルトの設定のまま、インストールをクリックします。
 ![image](https://user-images.githubusercontent.com/22209835/141885720-d337bf45-a8b2-45cb-9369-d282a72acecd.png)
 
+### 2. Storage Clusterの構成
+1. StorageClusterオペランドの構成が求められますので、作成してきます。
 ![image](https://user-images.githubusercontent.com/22209835/141886104-83ba1997-38b2-40d1-899f-8664fde5fd3e.png)
+1. Internal attachedDevices を選択し、先程作成した LocalStorage の StorageClass を指定します。展開するノードは適宜判断下さい。
 ![image](https://user-images.githubusercontent.com/22209835/141886497-89696537-a5d9-4dc6-8b55-0bc619089b81.png)
+1. セキュリティおよびネットワークの構成は、デフォルトのまま次へをクリックします。お客様要件で ストレージの暗号化が求められている場合には、暗号の有効化を選択してください。
 ![image](https://user-images.githubusercontent.com/22209835/141886581-0b1a52d3-0b9b-45d3-88d1-3be72f866a7c.png)
+1. 内容を確認して、`作成`をクリックします。
 ![image](https://user-images.githubusercontent.com/22209835/141886643-5896c1b6-d530-408a-a63c-9d8f81a5e16c.png)
-
-Storage Cluster が Ready となったことを確認する。
+1. Storage Cluster が Ready となったことを確認します。
 ![image](https://user-images.githubusercontent.com/22209835/141926702-e7887cb4-030f-4a63-a2cf-98bb3641a721.png)
-
-
-
