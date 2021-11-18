@@ -1,20 +1,22 @@
-1. OpenShift 環境へのログイン
-1. 名前空間　cp4aiops の作成
+Cloud Pak for AIOps(CP4AIOps）のコア・コンポーネントのひとつである EventManagerを OpenShift上に導入してきます。
+EventManagerは、従来 Netcool Opearational Insightと呼ばれていた製品をコアとするコンポーネントです。
+
+## 1. EventManager導入の準備
+1. OpenShift 環境へログインします。
+1. 名前空間　cp4aiops を作成します。
 ``oc new-project cp4aiops``
-1. Entitilement Key の取得
-https://myibm.ibm.com/products-services/containerlibrary にアクセスし取得
-```
-export entitilment_key=xxxxxxxxxxxxxxxxx
-```
-1. PullSecret の作成
+1. CP4AIOps のコンテナイメージを取得するための Entitilement Key の取得
+[IBMサイト](https://myibm.ibm.com/products-services/containerlibrary) に IBMIDでアクセスし取得してください。
+1. 取得したEntitilement Keyを指定してPullSecretを作成します。
 ```
 export entitilment_key=xxxxxxxxxxxxxxxxx
 oc create secret docker-registry noi-registry-secret --docker-username=cp --docker-password=$entitilment_key --docker-server=cp.icr.io --namespace=cp4aiops
 ```
-1. 外部から EventManagerへのアクセスを許可
+1. 外部から EventManagerへのアクセスを許可するために、Ingressに以下を設定します。
 ```
 if [ $(oc get ingresscontroller default -n openshift-ingress-operator -o jsonpath='{.status.endpointPublishingStrategy.type}') = "HostNetwork" ]; then oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'; fi
 ```
+### 1. CP4AIOps カタログ・ソースの作成
 1. CaseToolのダウンロード
 cloudctl case save --case ibm-netcool-prod --outputdir /tmp/cases --repo https://raw.githubusercontent.com/IBM/cloud-pak/master/repo/case
 
